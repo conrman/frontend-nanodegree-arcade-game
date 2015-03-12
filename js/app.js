@@ -24,6 +24,7 @@ Enemy.prototype.update = function(dt) {
         this.x = -100;
     } else {
         this.x = this.x + this.speed;
+        console.log(Resources.get(this.sprite).width);
     }
 
     ctx.drawImage(Resources.get(this.sprite), this.x*dt, this.y*dt);
@@ -64,26 +65,22 @@ Player.prototype.update = function() {
 Player.prototype.handleInput = function(userInput) {
 
     // Move player 
-    this.move(userInput, 100);
-
-    // console.log('player: ' + this.x + ' ' + this.y);
-}
-
-Player.prototype.move = function(direction, distance) {
-    switch(direction) {
+    switch(userInput) {
         case 'left':
-            this.x = this.x - distance;
+            this.x = this.x - 101;
         break;
         case 'right':
-            this.x = this.x + distance;
+            this.x = this.x + 101;
         break;
         case 'up':
-            this.y = this.y - distance;
+            this.y = this.y - 85;
         break;
         case 'down':
-            this.y = this.y + distance;
+            this.y = this.y + 85;
         break;
     }
+
+    // console.log('player: ' + this.x + ' ' + this.y);
 }
 
 
@@ -92,13 +89,13 @@ Player.prototype.move = function(direction, distance) {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-var e1 = new Enemy({ x: 0, y: 50 });
+var e1 = new Enemy({ x: 0, y: 60 });
 var e2 = new Enemy({ x: 0, y: 150 });
 var e3 = new Enemy({ x: 0, y: 230 });
 
 var allEnemies = [ e1, e2, e3 ];
 
-var player = new Player({ x: 200, y: 400});
+var player = new Player({ x: 200, y: 380});
 
 
 // This listens for key presses and sends the keys to your
